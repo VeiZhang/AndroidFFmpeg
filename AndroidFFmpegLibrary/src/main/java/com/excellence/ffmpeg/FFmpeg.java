@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.excellence.exec.Command.CommandTask;
 import com.excellence.exec.Commander;
+import com.excellence.exec.CommanderOptions;
 import com.excellence.exec.IListener;
 import com.excellence.ffmpeg.CpuChecker.CpuAbi;
 
@@ -33,11 +34,19 @@ public class FFmpeg {
     private Context mContext = null;
 
     public static void init(Context context) {
+        init(context, null);
+    }
+
+    public static void init(Context context, CommanderOptions options) {
         if (mInstance != null) {
             Log.i(TAG, "FFmpeg initialized!!!");
             return;
         }
-        Commander.init();
+        if (options == null) {
+            Commander.init();
+        } else {
+            Commander.init(options);
+        }
         mInstance = new FFmpeg(context.getApplicationContext());
     }
 
