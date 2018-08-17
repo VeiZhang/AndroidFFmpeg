@@ -48,7 +48,9 @@ public class FFmpeg {
     public static CommandTask addTask(@NonNull List<String> command, IListener listener) {
         String ffmpeg = checkFFmpeg();
         List<String> cmd = new ArrayList<>(command);
-        cmd.add(0, ffmpeg);
+        if (!command.contains(ffmpeg)) {
+            cmd.add(0, ffmpeg);
+        }
         return Commander.addTask(cmd, listener);
     }
 
@@ -72,7 +74,12 @@ public class FFmpeg {
         Commander.destory();
     }
 
-    private static String checkFFmpeg() {
+    /**
+     * 初始化检测，返回FFmpeg工具路径
+     *
+     * @return
+     */
+    public static String checkFFmpeg() {
         if (mInstance == null) {
             throw new RuntimeException("FFmpeg not initialized!!!");
         }
