@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTextView.setText("");
                 String cmd = "-version";
                 FFmpeg.addTask(cmd, new IListener() {
                     @Override
