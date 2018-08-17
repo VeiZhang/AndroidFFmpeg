@@ -1,5 +1,53 @@
 # FFmpeg for Android
 
+[![Download][icon_download]][download]
+
+```
+implementation 'com.excellence:ffmpeg:_latestVersion'
+```
+
+## AndroidFFmpeg使用
+
+```
+// 初始化，默认：不限制并发线程数；指令超时10s终止
+FFmpeg.init(context);
+
+// 自定义初始化参数：超时1s终止
+FFmpeg.init(context, new CommanderOptions.Builder().setTimeOut(1000).build())
+
+// 获取FFmpeg工具路径
+FFmpeg.checkFFmpeg()
+
+// 创建执行命令
+FFmpeg.addTask(cmd, new IListener() {
+    @Override
+    public void onPre(String command) {
+        Log.i(TAG, "onPre: " + command);
+    }
+
+    @Override
+    public void onProgress(String message) {
+        Log.i(TAG, "onProgress: " + message);
+    }
+
+    @Override
+    public void onError(Throwable t) {
+        t.printStackTrace();
+    }
+
+    @Override
+    public void onSuccess(String message) {
+        Log.i(TAG, "onSuccess: " + message);
+    }
+});
+
+// 终止命令
+CommandTask.discard()
+
+// 终止所有命令
+FFmpeg.destory()
+```
+
 ## FFmpeg命令
 
 [FFMpeg官网][FFMpeg官网]
@@ -183,7 +231,11 @@
     ```
 
 
-## AndroidFFmpeg使用
+## 版本更新
+
+| 版本 | 描述 |
+| --- | ---- |
+| [1.0.0][FFmpeg1.0.0] | 集成FFmpeg命令行执行 **2017-8-17** |
 
 
 ## 感谢
@@ -193,9 +245,20 @@
 > - [c060604][c060604]
 
 
+<!-- 网站链接 -->
+
+[download]:https://bintray.com/veizhang/maven/ffmpeg/_latestVersion "Latest version"
 [FFMpeg官网]:http://ffmpeg.org/
 [Windows工具下载]:https://ffmpeg.zeranoe.com/builds/
 [ffmpeg-android-java]:https://github.com/WritingMinds/ffmpeg-android-java "FFmpeg在Android中示例"
 [ffmpeg-android]:https://github.com/WritingMinds/ffmpeg-android "编译FFmpeg可执行文件"
 [hiliving]:https://github.com/hiliving/VideoEdit "FFmpeg命令示例"
 [c060604]:https://github.com/c060604/ffmpeg-usage "FFmpeg命令讲解"
+
+<!-- 图片链接 -->
+
+[icon_download]:https://api.bintray.com/packages/veizhang/maven/ffmpeg/images/download.svg
+
+<!-- 版本 -->
+
+[FFmpeg1.0.0]:https://bintray.com/veizhang/maven/ffmpeg/1.0.0
