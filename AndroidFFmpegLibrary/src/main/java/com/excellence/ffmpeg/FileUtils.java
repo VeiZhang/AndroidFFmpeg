@@ -2,11 +2,9 @@ package com.excellence.ffmpeg;
 
 import android.content.Context;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * <pre>
@@ -51,21 +49,5 @@ public class FileUtils {
             e.printStackTrace();
         }
         return false;
-    }
-
-    public static StringBuilder getInputStream(InputStream inputStream) {
-        StringBuilder result = new StringBuilder();
-        try {
-            BufferedReader stdin = new BufferedReader(new InputStreamReader(inputStream));
-            String line = null;
-            while ((line = stdin.readLine()) != null) {
-                System.out.println(line);
-                result.append(line);
-            }
-            stdin.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
     }
 }
