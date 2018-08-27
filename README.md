@@ -45,7 +45,7 @@ FFmpeg.addTask(cmd, new IListener() {
 CommandTask.discard()
 
 // 终止所有命令
-FFmpeg.destory()
+FFmpeg.destroy()
 ```
 
 ## FFmpeg命令

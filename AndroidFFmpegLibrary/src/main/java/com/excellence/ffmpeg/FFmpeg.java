@@ -79,7 +79,7 @@ public class FFmpeg {
         return addTask(cmd, listener);
     }
 
-    public static void destory() {
+    public static void destroy() {
         Commander.destory();
     }
 
