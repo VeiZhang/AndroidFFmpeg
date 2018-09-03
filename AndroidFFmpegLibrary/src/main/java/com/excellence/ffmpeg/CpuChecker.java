@@ -20,9 +20,9 @@ public class CpuChecker {
     private static final String TAG = CpuChecker.class.getSimpleName();
 
     public static final String CPU_ARM_V7 = "armeabi-v7a";
-    public static final String CPU_ARM64_V8A = "arm64-v8a";
-    public static final String CPU_x86 = "x86";
-    public static final String CPU_x86_64 = "x86_64";
+    public static final String CPU_ARM64_V8 = "arm64-v8a";
+    public static final String CPU_X86 = "x86";
+    public static final String CPU_X86_64 = "x86_64";
 
     public static CpuAbi getCpuAbi() {
         CpuAbi cpuAbi = CpuAbi.NONE;
@@ -32,11 +32,11 @@ public class CpuChecker {
 
         switch (CPU_ABI) {
             case CPU_ARM_V7:
-            case CPU_ARM64_V8A:
+            case CPU_ARM64_V8:
                 return CpuAbi.ARMv7;
 
-            case CPU_x86:
-            case CPU_x86_64:
+            case CPU_X86:
+            case CPU_X86_64:
                 return CpuAbi.x86;
 
             default:
@@ -63,7 +63,7 @@ public class CpuChecker {
     }
 
     public enum CpuAbi {
-        x86(CPU_x86),
+        x86(CPU_X86),
         ARMv7(CPU_ARM_V7),
         NONE(null);
 
