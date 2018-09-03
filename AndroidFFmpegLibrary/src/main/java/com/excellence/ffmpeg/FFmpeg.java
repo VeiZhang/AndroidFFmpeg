@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.excellence.exec.Command.CommandTask;
+import com.excellence.exec.CommandTask;
 import com.excellence.exec.Commander;
 import com.excellence.exec.CommanderOptions;
 import com.excellence.exec.IListener;
@@ -54,6 +54,14 @@ public class FFmpeg {
         mContext = context;
     }
 
+    /**
+     * @see CommandTask.Builder#build()
+     *
+     * @param command
+     * @param listener
+     * @return
+     */
+    @Deprecated
     public static CommandTask addTask(@NonNull List<String> command, IListener listener) {
         String ffmpeg = checkFFmpeg();
         List<String> cmd = new ArrayList<>(command);
@@ -63,24 +71,34 @@ public class FFmpeg {
         return Commander.addTask(cmd, listener);
     }
 
+    /**
+     * @see CommandTask.Builder#build()
+     *
+     * @param command
+     * @param listener
+     * @return
+     */
+    @Deprecated
     public static CommandTask addTask(@NonNull String[] command, IListener listener) {
         return addTask(Arrays.asList(command), listener);
     }
 
     /**
+     * @see CommandTask.Builder#build()
      * 字符串命令，参数请以空格分隔
      *
      * @param command
      * @param listener
      * @return
      */
+    @Deprecated
     public static CommandTask addTask(@NonNull String command, IListener listener) {
         String[] cmd = command.split(" ");
         return addTask(cmd, listener);
     }
 
     public static void destroy() {
-        Commander.destory();
+        Commander.destroy();
     }
 
     /**
