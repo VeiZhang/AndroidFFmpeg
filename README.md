@@ -6,6 +6,8 @@
 implementation 'com.excellence:ffmpeg:_latestVersion'
 ```
 
+基于[AndroidExec][AndroidExec]项目，FFmpeg命令执行
+
 ## AndroidFFmpeg使用
 
 ```
@@ -19,7 +21,9 @@ FFmpeg.init(context, new CommanderOptions.Builder().setTimeOut(1000).build())
 FFmpeg.checkFFmpeg()
 
 // 创建执行命令
-FFmpeg.addTask(cmd, new IListener() {
+推荐方式：new CommandTask.Builder().command(FFmpeg.checkFFmpeg()).command(cmd).build().deploy(IListener);
+
+丢弃方式：FFmpeg.addTask(cmd, new IListener() {
     @Override
     public void onPre(String command) {
         Log.i(TAG, "onPre: " + command);
@@ -235,7 +239,8 @@ FFmpeg.destroy()
 
 | 版本 | 描述 |
 | --- | ---- |
-| [1.0.0][FFmpeg1.0.0] | 集成FFmpeg命令行执行 **2017-8-17** |
+| [1.1.0][FFmpeg1.1.0] | 使用Builder模式创建命令任务，修复崩溃异常 **2018-9-3** |
+| [1.0.0][FFmpeg1.0.0] | 集成FFmpeg命令行执行 **2018-8-17** |
 
 
 ## 感谢
@@ -248,6 +253,7 @@ FFmpeg.destroy()
 <!-- 网站链接 -->
 
 [download]:https://bintray.com/veizhang/maven/ffmpeg/_latestVersion "Latest version"
+[AndroidExec]:https://github.com/VeiZhang/AndroidExec
 [FFMpeg官网]:http://ffmpeg.org/
 [Windows工具下载]:https://ffmpeg.zeranoe.com/builds/
 [ffmpeg-android-java]:https://github.com/WritingMinds/ffmpeg-android-java "FFmpeg在Android中示例"
@@ -261,4 +267,5 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
+[FFmpeg1.1.0]:https://bintray.com/veizhang/maven/ffmpeg/1.1.0
 [FFmpeg1.0.0]:https://bintray.com/veizhang/maven/ffmpeg/1.0.0
