@@ -11,6 +11,8 @@ import com.excellence.exec.CommandTask;
 import com.excellence.exec.IListener;
 import com.excellence.ffmpeg.FFmpeg;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity implements IListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -38,7 +40,11 @@ public class MainActivity extends AppCompatActivity implements IListener {
                     mTask = null;
                     return;
                 }
-                String cmd = "-version";
+                File saveFile = new File("/sdcard/record.ts");
+                if (saveFile.exists()) {
+                    saveFile.delete();
+                }
+                String cmd = "-reconnect 1 -reconnect_at_eof 1 -reconnect_streamed 1 -reconnect_delay_max 10 -i http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8 -t 60 -vcodec copy " + saveFile.getPath();
                 // mTask = FFmpeg.addTask(cmd, MainActivity.this);
                 mTask = new CommandTask.Builder().command(FFmpeg.checkFFmpeg()).command(cmd).build();
                 mTask.deploy(MainActivity.this);
