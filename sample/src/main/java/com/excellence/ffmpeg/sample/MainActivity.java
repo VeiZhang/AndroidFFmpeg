@@ -1,7 +1,7 @@
 package com.excellence.ffmpeg.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements IListener {
                 }
                 String cmd = "-reconnect 1 -reconnect_at_eof 1 -reconnect_streamed 1 -reconnect_delay_max 10 -i http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8 -t 60 -vcodec copy " + saveFile.getPath();
                 // mTask = FFmpeg.addTask(cmd, MainActivity.this);
-                mTask = new CommandTask.Builder().command(FFmpeg.checkFFmpeg()).command(cmd).build();
+                mTask = new CommandTask.Builder().command(FFmpeg.checkFFmpeg()).commands(cmd).build();
                 mTask.deploy(MainActivity.this);
             }
         });
