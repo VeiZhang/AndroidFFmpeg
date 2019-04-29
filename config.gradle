@@ -107,7 +107,7 @@ ext {
             // https://github.com/VeiZhang/AppStatistics
             "app-statistics"      : "com.excellence:app-statistics:1.0.1",
             // https://github.com/VeiZhang/AndroidExec
-            "exec"                : "com.excellence:exec:1.1.0",
+            "exec"                : "com.excellence:exec:1.1.1",
             // https://github.com/VeiZhang/AndroidFFmpeg
             "ffmpeg"              : "com.excellence:ffmpeg:1.1.0",
             // https://github.com/VeiZhang/ImageLoader

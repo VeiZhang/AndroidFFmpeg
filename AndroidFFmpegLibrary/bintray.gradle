@@ -28,7 +28,7 @@ publish {
     userOrg = org
     groupId = 'com.excellence'
     artifactId = 'ffmpeg'
-    publishVersion = '1.1.0'
+    publishVersion = '1.1.1'
     desc = 'android执行FFmpeg命令'
     website = 'https://github.com/VeiZhang/FFmpegAndroid'
     licences = ['Apache-2.0']
