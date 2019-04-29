@@ -239,6 +239,7 @@ FFmpeg.destroy()
 
 | 版本 | 描述 |
 | --- | ---- |
+| [1.1.1][FFmpeg1.1.1] | 更新ffmpeg可执行文件，修改低版本机型中任务销毁时导致的阻塞 **2019-4-29** |
 | [1.1.0][FFmpeg1.1.0] | 使用Builder模式创建命令任务，修复崩溃异常 **2018-9-3** |
 | [1.0.0][FFmpeg1.0.0] | 集成FFmpeg命令行执行 **2018-8-17** |
 
@@ -267,5 +268,6 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
+[FFmpeg1.1.1]:https://bintray.com/veizhang/maven/ffmpeg/1.1.1
 [FFmpeg1.1.0]:https://bintray.com/veizhang/maven/ffmpeg/1.1.0
 [FFmpeg1.0.0]:https://bintray.com/veizhang/maven/ffmpeg/1.0.0
