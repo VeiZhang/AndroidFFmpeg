@@ -1,13 +1,17 @@
-apply plugin: 'com.android.library'
+def plugins = rootProject.ext.plugins
+def cfg = rootProject.ext.android
+def libs = rootProject.ext.dependencies
+
+apply plugin: plugins.library
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion cfg.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -25,74 +29,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:25.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api 'com.excellence:exec:1.1.0'
+    implementation libs["appcompat-v7"]
+    api libs["exec"]
 }
 
-/*********************上传jCenter依赖*********************/
-apply plugin: 'com.novoda.bintray-release'
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.novoda:bintray-release:0.8.0'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-/**避免中文注释:编码GBK的不可映射字符**/
-tasks.withType(Javadoc) {
-    options {
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        links "http://docs.oracle.com/javase/7/docs/api"
-    }
-}
-
-/**避免Javadocs错误:找不到引用**/
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-}
-
-/**发布到我的Bintray仓库**/
-def user = getPropertyValue('bintrayUser')
-def key = getPropertyValue('bintrayKey')
-def org = getPropertyValue('userOrg')
-
-publish {
-    bintrayUser = user
-    bintrayKey = key
-    dryRun = false
-    userOrg = org
-    groupId = 'com.excellence'
-    artifactId = 'ffmpeg'
-    publishVersion = '1.1.0'
-    desc = 'android执行FFmpeg命令'
-    website = 'https://github.com/VeiZhang/FFmpegAndroid'
-    licences = ['Apache-2.0']
-}
-
-/**读取bintray.key文件的key**/
-def getPropertyValue(String key) {
-    if (key == null || key.length() == 0)
-        return null
-
-    File file = project.rootProject.file('../../bintray.key')
-    if (!file.exists())
-        return null
-
-    InputStream inputStream = file.newDataInputStream()
-    Properties properties = new Properties()
-    properties.load(inputStream)
-
-    //读取Key
-    return properties.getProperty(key)
-}
+apply from: 'bintray.gradle'
