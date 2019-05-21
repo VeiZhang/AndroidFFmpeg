@@ -1,3 +1,4 @@
+def bintray = rootProject.ext.bintray
 /*********************上传jCenter依赖*********************/
 apply plugin: 'com.novoda.bintray-release'
 
@@ -26,12 +27,12 @@ publish {
     bintrayKey = key
     dryRun = false
     userOrg = org
-    groupId = 'com.excellence'
+    groupId = bintray.groupId
     artifactId = 'ffmpeg'
-    publishVersion = '1.1.1'
+    publishVersion = bintray.publishVersion
     desc = 'android执行FFmpeg命令'
-    website = 'https://github.com/VeiZhang/FFmpegAndroid'
-    licences = ['Apache-2.0']
+    website = bintray.website
+    licences = bintray.licences
 }
 
 /**读取bintray.key文件的key**/

@@ -3,6 +3,14 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 ext {
+    // 上传bintray的配置
+    bintray = [
+            groupId        : "com.excellence",
+            publishVersion : "1.2.0",
+            website        : 'https://github.com/VeiZhang/FFmpegAndroid',
+            licences       : "['Apache-2.0']"
+    ]
+
     // 插件
     plugins = [
             application       : "com.android.application",
