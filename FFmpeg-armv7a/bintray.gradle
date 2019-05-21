@@ -1,0 +1,53 @@
+def bintray = rootProject.ext.bintray
+/*********************上传jCenter依赖*********************/
+apply plugin: 'com.novoda.bintray-release'
+
+/**避免中文注释:编码GBK的不可映射字符**/
+tasks.withType(Javadoc) {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
+/**避免Javadocs错误:找不到引用**/
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+}
+
+/**发布到我的Bintray仓库**/
+def user = getPropertyValue('bintrayUser')
+def key = getPropertyValue('bintrayKey')
+def org = getPropertyValue('userOrg')
+
+publish {
+    bintrayUser = user
+    bintrayKey = key
+    dryRun = false
+    userOrg = org
+    groupId = bintray.groupId
+    artifactId = 'ffmpeg-armv7a'
+    publishVersion = bintray.publishVersion
+    desc = 'android执行FFmpeg可执行文件-armv7a'
+    website = bintray.website
+    licences = bintray.licences
+}
+
+/**读取bintray.key文件的key**/
+def getPropertyValue(String key) {
+    if (key == null || key.length() == 0)
+        return null
+
+    File file = project.rootProject.file('../../bintray.key')
+    if (!file.exists())
+        return null
+
+    InputStream inputStream = file.newDataInputStream()
+    Properties properties = new Properties()
+    properties.load(inputStream)
+
+    //读取Key
+    return properties.getProperty(key)
+}

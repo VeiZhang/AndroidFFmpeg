@@ -33,7 +33,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation libs["appcompat-v7"]
-    api libs["exec"]
+    api project(':FFmpeg-java')
+    api project(':FFmpeg-armeabi')
+    api project(':FFmpeg-armv7a')
+    api project(':FFmpeg-x86')
 }
 
 apply from: 'bintray.gradle'

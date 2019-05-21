@@ -1,2 +1,6 @@
 include ':sample'
 include ':AndroidFFmpegLibrary'
+include ':FFmpeg-java'
+include ':FFmpeg-armeabi'
+include ':FFmpeg-armv7a'
+include ':FFmpeg-x86'
