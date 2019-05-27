@@ -2,9 +2,21 @@
 
 [![Download][icon_download]][download]
 
-```
-implementation 'com.excellence:ffmpeg:_latestVersion'
-```
+* 完整引用
+    ```
+    // 完整引用，集成所有CPU架构的可执行文件
+    implementation 'com.excellence:ffmpeg:_latestVersion'
+    ```
+
+* 部分引用
+    ```
+    implementation 'com.excellence:ffmpeg-java:_latestVersion'
+
+    // 部分引用，使用想要的CPU架构的可执行文件
+    implementation 'com.excellence:ffmpeg-armeabi:_latestVersion'
+    implementation 'com.excellence:ffmpeg-armv7a:_latestVersion'
+    implementation 'com.excellence:ffmpeg-x86:_latestVersion'
+    ```
 
 基于[AndroidExec][AndroidExec]项目，FFmpeg命令执行
 
@@ -239,6 +251,7 @@ FFmpeg.destroy()
 
 | 版本 | 描述 |
 | --- | ---- |
+| [1.2.0][FFmpeg1.2.0] | 新增armeabi架构，分离ffmpeg可执行文件 **2019-5-21** |
 | [1.1.1][FFmpeg1.1.1] | 更新ffmpeg可执行文件，修改低版本机型中任务销毁时导致的阻塞 **2019-4-29** |
 | [1.1.0][FFmpeg1.1.0] | 使用Builder模式创建命令任务，修复崩溃异常 **2018-9-3** |
 | [1.0.0][FFmpeg1.0.0] | 集成FFmpeg命令行执行 **2018-8-17** |
@@ -268,6 +281,7 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
+[FFmpeg1.2.0]:https://bintray.com/veizhang/maven/ffmpeg/1.2.0
 [FFmpeg1.1.1]:https://bintray.com/veizhang/maven/ffmpeg/1.1.1
 [FFmpeg1.1.0]:https://bintray.com/veizhang/maven/ffmpeg/1.1.0
 [FFmpeg1.0.0]:https://bintray.com/veizhang/maven/ffmpeg/1.0.0

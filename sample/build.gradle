@@ -33,5 +33,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation libs["appcompat-v7"]
     implementation libs["constraint-layout"]
-    implementation project(':AndroidFFmpegLibrary')
+
+    // 完整引用
+    // implementation project(':AndroidFFmpegLibrary')
+    implementation libs["ffmpeg"]
+
+    // implementation libs["ffmpeg-java"]
+    // 部分引用，使用想要的CPU架构的可执行文件
+    // implementation libs["ffmpeg-armeabi"]
 }
