@@ -35,8 +35,8 @@ dependencies {
     implementation libs["constraint-layout"]
 
     // 完整引用
-    // implementation project(':AndroidFFmpegLibrary')
-    implementation libs["ffmpeg"]
+    implementation project(':AndroidFFmpegLibrary')
+    // implementation libs["ffmpeg"]
 
     // implementation libs["ffmpeg-java"]
     // 部分引用，使用想要的CPU架构的可执行文件

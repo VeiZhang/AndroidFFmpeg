@@ -136,7 +136,13 @@ public class FFmpeg {
                         throw new Exception("Device not supported");
                 }
                 cpuArchNameFromAssets = cpuArchNameFromAssets + File.separator + FFMPEG;
-                FileUtils.copyFileFromAssetsToData(mInstance.mContext, cpuArchNameFromAssets, FFMPEG);
+                boolean success = FileUtils.copyFileFromAssetsToData(mInstance.mContext, cpuArchNameFromAssets, FFMPEG);
+                if (!success) {
+                    Log.i(TAG, "checkFFmpeg: default arm for CPU");
+                    cpuArchNameFromAssets = CpuAbi.ARM.getCpuName() + File.separator + FFMPEG;
+                    success = FileUtils.copyFileFromAssetsToData(mInstance.mContext, cpuArchNameFromAssets, FFMPEG);
+                    Log.i(TAG, "checkFFmpeg: default arm is success : " + success);
+                }
             }
             ffmpegFile.setExecutable(true);
             return ffmpegFile.getPath();
