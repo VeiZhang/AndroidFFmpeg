@@ -251,6 +251,7 @@ FFmpeg.destroy()
 
 | 版本 | 描述 |
 | --- | ---- |
+| [1.2.2][FFmpeg1.2.2] | 修复任务偶尔不执行 **2019-8-15** |
 | [1.2.1][FFmpeg1.2.1] | 设置armeabi为默认的CPU架构 **2019-5-29** |
 | [1.2.0][FFmpeg1.2.0] | 新增armeabi架构，分离ffmpeg可执行文件 **2019-5-21** |
 | [1.1.1][FFmpeg1.1.1] | 更新ffmpeg可执行文件，修改低版本机型中任务销毁时导致的阻塞 **2019-4-29** |
@@ -282,6 +283,7 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
+[FFmpeg1.2.2]:https://bintray.com/veizhang/maven/ffmpeg/1.2.2
 [FFmpeg1.2.1]:https://bintray.com/veizhang/maven/ffmpeg/1.2.1
 [FFmpeg1.2.0]:https://bintray.com/veizhang/maven/ffmpeg/1.2.0
 [FFmpeg1.1.1]:https://bintray.com/veizhang/maven/ffmpeg/1.1.1
