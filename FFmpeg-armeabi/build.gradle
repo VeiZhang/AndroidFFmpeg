@@ -1,31 +1,6 @@
-def plugins = rootProject.ext.plugins
-def cfg = rootProject.ext.android
+apply from: 'https://gist.githubusercontent.com/VeiZhang/f703697d56fe717c3433f4218f296b36/raw/library.gradle'
+
 def libs = rootProject.ext.dependencies
-
-apply plugin: plugins.library
-
-
-android {
-    compileSdkVersion cfg.compileSdkVersion
-
-    defaultConfig {
-        minSdkVersion cfg.minSdkVersion
-        targetSdkVersion cfg.targetSdkVersion
-        versionCode cfg.versionCode
-        versionName cfg.versionName
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -36,4 +11,5 @@ dependencies {
     implementation libs["appcompat-v7"]
 }
 
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle' /** gradle 3.5.0 <-> 5.4.1 使用 **/
+apply from: 'github_package_publish_usage.gradle'

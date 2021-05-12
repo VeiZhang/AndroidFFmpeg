@@ -1,29 +1,16 @@
-def plugins = rootProject.ext.plugins
-def cfg = rootProject.ext.android
+apply from: 'https://gist.githubusercontent.com/VeiZhang/01779005843bc5b70b11551ca13c2ced/raw/application.gradle'
+
 def libs = rootProject.ext.dependencies
 
-apply plugin: plugins.application
-
 android {
-    compileSdkVersion cfg.compileSdkVersion
-
     defaultConfig {
         applicationId "com.excellence.ffmpeg.sample"
-        minSdkVersion cfg.minSdkVersion
-        targetSdkVersion cfg.targetSdkVersion
-        versionCode cfg.versionCode
-        versionName cfg.versionName
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+}
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+configurations.all {
+    // 不使用缓存，使用仓库中最新的包
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 dependencies {
@@ -41,4 +28,9 @@ dependencies {
     // implementation libs["ffmpeg-java"]
     // 部分引用，使用想要的CPU架构的可执行文件
     // implementation libs["ffmpeg-armeabi"]
+
+    /** Github packages **/
+//    implementation('com.excellence:ffmpeg:1.2.2') {
+//        changing = true
+//    }
 }

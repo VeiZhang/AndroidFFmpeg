@@ -27,11 +27,11 @@ publish {
     bintrayKey = key
     dryRun = false
     userOrg = org
-    groupId = bintray.groupId
+    groupId = rootProject.groupId
     artifactId = 'ffmpeg-armv7a'
-    publishVersion = bintray.publishVersion
+    publishVersion = rootProject.publishVersion
     desc = 'android执行FFmpeg可执行文件-armv7a'
-    website = bintray.website
+    website = rootProject.website
     licences = bintray.licences
 }
 
