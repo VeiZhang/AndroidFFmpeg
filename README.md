@@ -13,7 +13,7 @@
     implementation 'com.excellence:ffmpeg-java:_latestVersion'
 
     // 部分引用，使用想要的CPU架构的可执行文件
-    implementation 'com.excellence:ffmpeg-armeabi:_latestVersion'
+    implementation 'com.excellence:ffmpeg-arm64-v8a:_latestVersion'
     implementation 'com.excellence:ffmpeg-armv7a:_latestVersion'
     implementation 'com.excellence:ffmpeg-x86:_latestVersion'
     ```
@@ -251,6 +251,7 @@ FFmpeg.destroy()
 
 | 版本 | 描述 |
 | --- | ---- |
+| [1.2.3][FFmpeg1.2.3] | 增加CPU架构 **2021-5-30** |
 | [1.2.2][FFmpeg1.2.2] | 修复任务偶尔不执行 **2019-8-15** |
 | [1.2.1][FFmpeg1.2.1] | 设置armeabi为默认的CPU架构 **2019-5-29** |
 | [1.2.0][FFmpeg1.2.0] | 新增armeabi架构，分离ffmpeg可执行文件 **2019-5-21** |
@@ -283,6 +284,7 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
+[FFmpeg1.2.2]:https://bintray.com/veizhang/maven/ffmpeg/1.2.3
 [FFmpeg1.2.2]:https://bintray.com/veizhang/maven/ffmpeg/1.2.2
 [FFmpeg1.2.1]:https://bintray.com/veizhang/maven/ffmpeg/1.2.1
 [FFmpeg1.2.0]:https://bintray.com/veizhang/maven/ffmpeg/1.2.0
