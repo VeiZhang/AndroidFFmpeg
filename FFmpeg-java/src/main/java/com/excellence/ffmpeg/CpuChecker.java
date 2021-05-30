@@ -21,7 +21,7 @@ class CpuChecker {
 
     private static final String CPU_ARM = "armeabi";
     private static final String CPU_ARM_V7 = "armeabi-v7a";
-    private static final String CPU_ARM64_V8 = "arm64-v8a";
+    private static final String CPU_ARM64_V8A = "arm64-v8a";
     private static final String CPU_X86 = "x86";
     private static final String CPU_X86_64 = "x86_64";
 
@@ -33,15 +33,17 @@ class CpuChecker {
 
         switch (CPU_ABI) {
             case CPU_ARM:
-                return CpuAbi.ARM;
-
             case CPU_ARM_V7:
-            case CPU_ARM64_V8:
                 return CpuAbi.ARMv7;
 
+            case CPU_ARM64_V8A:
+                return CpuAbi.ARMv8;
+
             case CPU_X86:
-            case CPU_X86_64:
                 return CpuAbi.x86;
+
+            case CPU_X86_64:
+                return CpuAbi.x86_64;
 
             default:
                 break;
@@ -68,6 +70,8 @@ class CpuChecker {
 
     protected enum CpuAbi {
         x86(CPU_X86),
+        x86_64(CPU_X86_64),
+        ARMv8(CPU_ARM64_V8A),
         ARMv7(CPU_ARM_V7),
         ARM(CPU_ARM),
         NONE(null);

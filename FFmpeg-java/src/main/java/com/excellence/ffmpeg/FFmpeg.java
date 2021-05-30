@@ -116,30 +116,21 @@ public class FFmpeg {
             if (!ffmpegFile.exists()) {
                 String cpuArchNameFromAssets = "";
                 CpuAbi cpuAbi = CpuChecker.getCpuAbi();
-                switch (cpuAbi) {
-                    case x86:
-                        Log.i(TAG, "checkFFmpeg: Loading FFmpeg for x86 CPU");
-                        cpuArchNameFromAssets = cpuAbi.getCpuName();
-                        break;
-                    case ARMv7:
-                        Log.i(TAG, "checkFFmpeg: Loading FFmpeg for armv7 CPU");
-                        cpuArchNameFromAssets = cpuAbi.getCpuName();
-                        break;
 
-                    case ARM:
-                        Log.i(TAG, "checkFFmpeg: Loading FFmpeg for armeabi CPU");
-                        cpuArchNameFromAssets = cpuAbi.getCpuName();
-                        break;
+                Log.i(TAG, String.format("checkFFmpeg: Loading FFmpeg for %s CPU", cpuAbi.getCpuName()));
 
-                    case NONE:
-                    default:
-                        throw new Exception("Device not supported");
+                if (cpuAbi == CpuAbi.NONE) {
+                    throw new Exception("Device not supported");
                 }
+                cpuArchNameFromAssets = cpuAbi.getCpuName();
+
                 cpuArchNameFromAssets = cpuArchNameFromAssets + File.separator + FFMPEG;
                 boolean success = FileUtils.copyFileFromAssetsToData(mInstance.mContext, cpuArchNameFromAssets, FFMPEG);
                 if (!success) {
                     Log.i(TAG, "checkFFmpeg: default arm for CPU");
-                    cpuArchNameFromAssets = CpuAbi.ARM.getCpuName() + File.separator + FFMPEG;
+                    CpuAbi defaultCpuAbi = CpuAbi.ARMv7;
+
+                    cpuArchNameFromAssets = defaultCpuAbi.getCpuName() + File.separator + FFMPEG;
                     success = FileUtils.copyFileFromAssetsToData(mInstance.mContext, cpuArchNameFromAssets, FFMPEG);
                     Log.i(TAG, "checkFFmpeg: default arm is success : " + success);
                 }

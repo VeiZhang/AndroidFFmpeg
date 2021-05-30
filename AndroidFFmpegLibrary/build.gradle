@@ -11,9 +11,10 @@ dependencies {
     implementation libs["appcompat-v7"]
 
     api project(':FFmpeg-java')
-    api project(':FFmpeg-armeabi')
     api project(':FFmpeg-armv7a')
+    api project(':FFmpeg-arm64-v8a')
     api project(':FFmpeg-x86')
+    api project(':FFmpeg-x86_64')
 }
 
 //apply from: 'bintray.gradle' /** gradle 3.5.0 <-> 5.4.1 使用 **/
