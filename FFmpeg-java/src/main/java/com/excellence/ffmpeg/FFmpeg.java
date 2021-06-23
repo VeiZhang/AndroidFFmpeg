@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * <pre>
  *     author : VeiZhang
@@ -32,12 +35,17 @@ public class FFmpeg {
     private static FFmpeg mInstance = null;
 
     private Context mContext = null;
+    private String mFfmpeg = "";
 
     public static void init(Context context) {
         init(context, null);
     }
 
     public static void init(Context context, CommanderOptions options) {
+        init(context, true, options);
+    }
+
+    public static void init(Context context, boolean initialized, CommanderOptions options) {
         if (mInstance != null) {
             Log.i(TAG, "FFmpeg initialized!!!");
             return;
@@ -48,10 +56,34 @@ public class FFmpeg {
             Commander.init(options);
         }
         mInstance = new FFmpeg(context.getApplicationContext());
+        if (initialized) {
+            mInstance.initFFmpeg().subscribe();
+        }
     }
 
     private FFmpeg(Context context) {
         mContext = context;
+    }
+
+    /**
+     * 默认初始化，每次启动应用时，删除旧的ffmpeg文件
+     * @return
+     */
+    public Observable<String> initFFmpeg() {
+        File ffmpegFile = new File(mInstance.mContext.getFilesDir(), FFMPEG);
+
+        return Observable.just(ffmpegFile).subscribeOn(Schedulers.io())
+                .map(file -> {
+                    /**
+                     * ffmpeg文件有更新，无法判断，因此每次都更新
+                     */
+                    if (ffmpegFile.exists()) {
+                        boolean success = ffmpegFile.delete();
+                        Log.e(TAG, "checkFFmpeg: delete old ffmpeg file success:" + success);
+                    }
+                    mFfmpeg = checkFFmpeg();
+                    return mFfmpeg;
+                });
     }
 
     /**
@@ -63,10 +95,9 @@ public class FFmpeg {
      */
     @Deprecated
     public static CommandTask addTask(@NonNull List<String> command, IListener listener) {
-        String ffmpeg = checkFFmpeg();
         List<String> cmd = new ArrayList<>(command);
-        if (!command.contains(ffmpeg)) {
-            cmd.add(0, ffmpeg);
+        if (!command.contains(mInstance.mFfmpeg)) {
+            cmd.add(0, mInstance.mFfmpeg);
         }
         return Commander.addTask(cmd, listener);
     }
@@ -134,6 +165,8 @@ public class FFmpeg {
                     success = FileUtils.copyFileFromAssetsToData(mInstance.mContext, cpuArchNameFromAssets, FFMPEG);
                     Log.i(TAG, "checkFFmpeg: default arm is success : " + success);
                 }
+
+                Log.i(TAG, "FFmpeg path: " + ffmpegFile.getPath());
             }
             ffmpegFile.setExecutable(true);
             return ffmpegFile.getPath();
