@@ -15,9 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
-
 /**
  * <pre>
  *     author : VeiZhang
@@ -35,7 +32,6 @@ public class FFmpeg {
     private static FFmpeg mInstance = null;
 
     private Context mContext = null;
-    private String mFfmpeg = "";
 
     public static void init(Context context) {
         init(context, null);
@@ -57,7 +53,7 @@ public class FFmpeg {
         }
         mInstance = new FFmpeg(context.getApplicationContext());
         if (initialized) {
-            mInstance.initFFmpeg().subscribe();
+            mInstance.initFFmpeg();
         }
     }
 
@@ -69,21 +65,17 @@ public class FFmpeg {
      * 默认初始化，每次启动应用时，删除旧的ffmpeg文件
      * @return
      */
-    public Observable<String> initFFmpeg() {
+    public void initFFmpeg() {
         File ffmpegFile = new File(mInstance.mContext.getFilesDir(), FFMPEG);
 
-        return Observable.just(ffmpegFile).subscribeOn(Schedulers.io())
-                .map(file -> {
-                    /**
-                     * ffmpeg文件有更新，无法判断，因此每次都更新
-                     */
-                    if (ffmpegFile.exists()) {
-                        boolean success = ffmpegFile.delete();
-                        Log.e(TAG, "checkFFmpeg: delete old ffmpeg file success:" + success);
-                    }
-                    mFfmpeg = checkFFmpeg();
-                    return mFfmpeg;
-                });
+        /**
+         * ffmpeg文件有更新，无法判断，因此每次都更新
+         */
+        if (ffmpegFile.exists()) {
+            boolean success = ffmpegFile.delete();
+            Log.e(TAG, "checkFFmpeg: delete old ffmpeg file success:" + success);
+        }
+        checkFFmpeg();
     }
 
     /**
@@ -95,9 +87,10 @@ public class FFmpeg {
      */
     @Deprecated
     public static CommandTask addTask(@NonNull List<String> command, IListener listener) {
+        String ffmpeg = checkFFmpeg();
         List<String> cmd = new ArrayList<>(command);
-        if (!command.contains(mInstance.mFfmpeg)) {
-            cmd.add(0, mInstance.mFfmpeg);
+        if (!command.contains(ffmpeg)) {
+            cmd.add(0, ffmpeg);
         }
         return Commander.addTask(cmd, listener);
     }

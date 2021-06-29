@@ -10,9 +10,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation libs["appcompat-v7"]
 
-    implementation libs["rxjava2"]
-    implementation libs["rxandroid2"]
-
     // api libs["exec"]
     api 'com.excellence:exec:1.1.2'
 }
