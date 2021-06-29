@@ -1,6 +1,6 @@
 ext {
     groupId = 'com.excellence'
-    publishVersion = '1.2.3'
+    publishVersion = '1.2.4'
     desc = 'android执行FFmpeg命令'
     website = 'https://github.com/VeiZhang/AndroidFFmpeg'
 }

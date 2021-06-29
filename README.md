@@ -251,6 +251,7 @@ FFmpeg.destroy()
 
 | 版本 | 描述 |
 | --- | ---- |
+| [1.2.4][FFmpeg1.2.4] | 每次初始化更新FFmpeg **2021-6-29** |
 | [1.2.3][FFmpeg1.2.3] | 增加CPU架构 **2021-5-30** |
 | [1.2.2][FFmpeg1.2.2] | 修复任务偶尔不执行 **2019-8-15** |
 | [1.2.1][FFmpeg1.2.1] | 设置armeabi为默认的CPU架构 **2019-5-29** |
@@ -284,7 +285,8 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
-[FFmpeg1.2.2]:https://bintray.com/veizhang/maven/ffmpeg/1.2.3
+[FFmpeg1.2.4]:https://bintray.com/veizhang/maven/ffmpeg/1.2.4
+[FFmpeg1.2.3]:https://bintray.com/veizhang/maven/ffmpeg/1.2.3
 [FFmpeg1.2.2]:https://bintray.com/veizhang/maven/ffmpeg/1.2.2
 [FFmpeg1.2.1]:https://bintray.com/veizhang/maven/ffmpeg/1.2.1
 [FFmpeg1.2.0]:https://bintray.com/veizhang/maven/ffmpeg/1.2.0
