@@ -20,17 +20,20 @@
 
 基于[AndroidExec][AndroidExec]项目，FFmpeg命令执行
 
-## AndroidFFmpeg使用
+## FFmpeg&FFprobe使用
 
 ```
 // 初始化，默认：不限制并发线程数；指令超时10s终止
 FFmpeg.init(context);
+FFprobe.init(context);
 
 // 自定义初始化参数：超时1s终止
 FFmpeg.init(context, new CommanderOptions.Builder().setTimeOut(1000).build())
+FFprobe.init(context, new CommanderOptions.Builder().setTimeOut(1000).build())
 
 // 获取FFmpeg工具路径
 FFmpeg.checkFFmpeg()
+FFprobe.checkFFmpeg()
 
 // 创建执行命令
 推荐方式：new CommandTask.Builder().command(FFmpeg.checkFFmpeg()).command(cmd).build().deploy(IListener);
@@ -62,6 +65,7 @@ CommandTask.discard()
 
 // 终止所有命令
 FFmpeg.destroy()
+FFprobe.destroy()
 ```
 
 ## FFmpeg命令
@@ -246,11 +250,21 @@ FFmpeg.destroy()
     ffmpeg -f avfoundation -framerate 30 -i "0" -f mpeg1video -b 500k -r 20 -vf scale=640:360 output.avi
     ```
 
+## FFprobe命令
+
+* 查看多媒体包信息
+
+	```
+	ffprobe -show_packets input.mp4
+	```
+
+
 
 ## 版本更新
 
 | 版本 | 描述 |
 | --- | ---- |
+| [1.2.6][FFmpeg1.2.6] | 增加ffprobe脚本 **2022-6-1** |
 | [1.2.5][FFmpeg1.2.5] | 增加OpenSSL **2021-8-23** |
 | [1.2.4][FFmpeg1.2.4] | 每次初始化更新FFmpeg **2021-6-29** |
 | [1.2.3][FFmpeg1.2.3] | 增加CPU架构 **2021-5-30** |
@@ -286,6 +300,7 @@ FFmpeg.destroy()
 
 <!-- 版本 -->
 
+[FFmpeg1.2.6]:https://bintray.com/veizhang/maven/ffmpeg/1.2.6
 [FFmpeg1.2.5]:https://bintray.com/veizhang/maven/ffmpeg/1.2.5
 [FFmpeg1.2.4]:https://bintray.com/veizhang/maven/ffmpeg/1.2.4
 [FFmpeg1.2.3]:https://bintray.com/veizhang/maven/ffmpeg/1.2.3
