@@ -1,0 +1,14 @@
+File dir = new File(rootDir.path, "library/ffmpeg")
+
+include ':FFmpeg-arm64-v8a'
+project(':FFmpeg-arm64-v8a').projectDir = new File(dir, 'arm64-v8a')
+
+include ':FFmpeg-armv7a'
+project(':FFmpeg-armv7a').projectDir = new File(dir, 'armv7a')
+
+include ':FFmpeg-x86'
+project(':FFmpeg-x86').projectDir = new File(dir, 'x86')
+
+include ':FFmpeg-x86_64'
+project(':FFmpeg-x86_64').projectDir = new File(dir, 'x86_64')
+

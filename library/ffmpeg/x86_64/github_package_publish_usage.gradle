@@ -1,0 +1,31 @@
+apply from: 'https://gist.githubusercontent.com/VeiZhang/aebbbd6d9d570dffac81eea80cdcda0a/raw/github_package_publish.gradle'
+
+/**发布到GitHub Packages仓库**/
+def LIB_GROUP_ID = rootProject.groupId
+def LIB_ARTIFACT_ID = 'ffmpeg-x86_64'
+def LIB_VERSION = rootProject.publishVersion
+def LIB_DESC = 'android执行FFmpeg可执行文件-x86_64'
+def LIB_URL = rootProject.website
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            // Specify own groupId as package name of your library,
+            // otherwise it would just use project's name (=name of the root directory) by default.
+            groupId LIB_GROUP_ID
+
+            // Specify custom artifactId if needed,
+            // otherwise it would use module's name by default.
+            artifactId LIB_ARTIFACT_ID
+
+            // You can specify custom version,
+            // otherwise it would use version from `android { defaultConfig { ... } }` by default.
+            version = LIB_VERSION
+
+            pom {
+                description = LIB_DESC
+                url = LIB_URL
+            }
+        }
+    }
+}

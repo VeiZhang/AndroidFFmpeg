@@ -1,0 +1,14 @@
+File dir = new File(rootDir.path, "library/ffprobe")
+
+include ':FFprobe-arm64-v8a'
+project(':FFprobe-arm64-v8a').projectDir = new File(dir, 'arm64-v8a')
+
+include ':FFprobe-armv7a'
+project(':FFprobe-armv7a').projectDir = new File(dir, 'armv7a')
+
+include ':FFprobe-x86'
+project(':FFprobe-x86').projectDir = new File(dir, 'x86')
+
+include ':FFprobe-x86_64'
+project(':FFprobe-x86_64').projectDir = new File(dir, 'x86_64')
+

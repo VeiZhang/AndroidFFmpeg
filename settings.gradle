@@ -1,7 +1,2 @@
 include ':sample'
-include ':AndroidFFmpegLibrary'
-include ':FFmpeg-java'
-include ':FFmpeg-arm64-v8a'
-include ':FFmpeg-armv7a'
-include ':FFmpeg-x86'
-include ':FFmpeg-x86_64'
+apply from: new File('/library/settings.gradle')

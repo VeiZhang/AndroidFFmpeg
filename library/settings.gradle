@@ -1,0 +1,9 @@
+File dir = new File(rootDir.path, "library/")
+
+include ':FFmpeg-java'
+project(':FFmpeg-java').projectDir = new File(dir, 'FFmpeg-java')
+include ':AndroidFFmpegLibrary'
+project(':AndroidFFmpegLibrary').projectDir = new File(dir, 'AndroidFFmpegLibrary')
+
+apply from: new File(dir, '/ffmpeg/settings.gradle')
+apply from: new File(dir, '/ffprobe/settings.gradle')
