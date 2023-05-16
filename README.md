@@ -12,10 +12,17 @@
     ```
     implementation 'com.excellence:ffmpeg-java:_latestVersion'
 
-    // 部分引用，使用想要的CPU架构的可执行文件
+    // ffmpeg部分引用，使用想要的CPU架构的可执行文件
     implementation 'com.excellence:ffmpeg-arm64-v8a:_latestVersion'
     implementation 'com.excellence:ffmpeg-armv7a:_latestVersion'
     implementation 'com.excellence:ffmpeg-x86:_latestVersion'
+    implementation 'com.excellence:ffmpeg-x86_64:_latestVersion'
+
+    // ffprobe部分引用，使用想要的CPU架构的可执行文件
+	implementation 'com.excellence:ffprobe-arm64-v8a:_latestVersion'
+	implementation 'com.excellence:ffprobe-armv7a:_latestVersion'
+	implementation 'com.excellence:ffprobe-x86:_latestVersion'
+	implementation 'com.excellence:ffprobe-x86_64:_latestVersion'
     ```
 
 基于[AndroidExec][AndroidExec]项目，FFmpeg命令执行
